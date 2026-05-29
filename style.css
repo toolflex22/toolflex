@@ -152,23 +152,19 @@ html[dir="ltr"] .close-btn {
     left: auto;
     right: 20px;
 }
-/* تنسيق حاوية الإعلان */
+
+/* التنسيق الجديد المضمون للحاوية الإعلانية */
 .ad-wrapper {
     text-align: center;
-    margin: 20px auto;
-    max-width: 100%;
-    overflow: hidden; /* يمنع ظهور شريط التمرير الأفقي البشع */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 25px auto;
+    width: 100%;
+    max-width: 730px; /* نفس عرض الإعلان تقريباً */
+    overflow-x: auto; /* إذا كانت الشاشة أصغر من الإعلان، سيسمح بالتمرير الداخلي الخفيف دون تخريب هيكل الموقع */
+    overflow-y: hidden;
 }
 
-/* حل مشكلة الهواتف المحمولة */
-@media (max-width: 768px) {
-    .ad-wrapper {
-        /* لتجنب تشويه المظهر على الموبايل، سنجعل الإعلان يلتف أو يظهر بشكل متناسق */
-        transform: scale(0.55); /* تصغير حجم الإعلان ليناسب شاشة الموبايل تماماً */
-        margin: -10px auto; /* معالجة الفراغات بعد التصغير */
-        width: 100%;
-    }
+/* هذا السطر يضمن أن المتصفح يعامل السكربت كعنصر كتلة مستقر */
+.ad-wrapper iframe, .ad-wrapper ins {
+    display: inline-block !important;
+    max-width: 100%;
 }
