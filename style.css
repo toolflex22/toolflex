@@ -1,0 +1,87 @@
+body {
+    background-color: #0f172a;
+    color: #f8fafc;
+    font-family: system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #1e293b;
+    padding: 15px 20px;
+    border-bottom: 1px solid #334155;
+}
+
+.header-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #38bdf8;
+}
+
+#lang-btn {
+    background-color: #38bdf8;
+    color: #0f172a;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.hero {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero h1 {
+    color: #38bdf8;
+    margin-bottom: 10px;
+}
+
+.main-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* مناسب للموبايل تلقائياً */
+    gap: 20px;
+}
+
+.tool-card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 25px;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    background-color: #0f172a;
+    color: #f8fafc;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 12px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.results-box {
+    margin-top: 15px;
+    background-color: #0f172a;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px dashed #38bdf8;
+    font-size: 1.1rem;
+}

@@ -3,32 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToolFlex | أدوات مجانية لصناع المحتوى</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            text-align: center;
-            padding: 50px;
-        }
-        .welcome-box {
-            background-color: #1e293b;
-            padding: 40px;
-            border-radius: 12px;
-            display: inline-block;
-            border: 1px solid #38bdf8;
-        }
-        h1 { color: #38bdf8; }
-        p { color: #94a3b8; }
-    </style>
+    <title>ToolFlex | أدوات مجانية</title>
+    <!-- ربط ملف التنسيق -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="welcome-box">
-        <h1>مرحباً بك في موقع ToolFlex 👋</h1>
-        <p>الموقع تحت الإنشاء وسيقدم قريباً أفضل الأدوات المجانية لصناع المحتوى.</p>
-    </div>
+    <!-- الهيدر وزر اللغة -->
+    <header>
+        <div class="header-container">
+            <div class="logo">ToolFlex ✨</div>
+            <button id="lang-btn" onclick="switchLanguage()">English</button>
+        </div>
+    </header>
 
+    <!-- القسم الرئيسي -->
+    <section class="hero">
+        <h1 id="hero-title">أدوات مجانية لزيادة إنتاجيتك</h1>
+        <p id="hero-desc">كل ما تحتاجه لتطوير محتواك في مكان واحد، بسرعة وبدون تسجيل.</p>
+    </section>
+
+    <!-- منطقة الأدوات -->
+    <main class="main-container">
+        <div class="tools-grid">
+            
+            <!-- كرت الأداة الأولى -->
+            <div class="tool-card">
+                <h3 id="tool1-title">📊 عداد الكلمات والحروف</h3>
+                <p id="tool1-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">احسب عدد الكلمات والحروف في نصك فوراً.</p>
+                
+                <!-- واجهة الأداة التفاعلية -->
+                <textarea id="text-input" oninput="countText()" placeholder="اكتب أو الصق نصك هنا..."></textarea>
+                
+                <div class="results-box">
+                    <span id="label-words">الكلمات:</span> <strong id="word-count">0</strong> | 
+                    <span id="label-chars">الحروف:</span> <strong id="char-count">0</strong>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ربط ملف البرمجة -->
+    <script src="main.js"></script>
 </body>
 </html>
