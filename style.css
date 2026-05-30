@@ -197,3 +197,13 @@ html[dir="ltr"] .close-btn {
         font-size: 0.8rem;
     }
 }
+/* تحسين مظهر مربعات الاختيار في الأدوات */
+.tool-card input[type="checkbox"] {
+    accent-color: #38bdf8; /* تلوين مربع الاختيار باللون الأزرق المميز للموقع */
+    margin-left: 8px;
+    vertical-align: middle;
+}
+html[dir="ltr"] .tool-card input[type="checkbox"] {
+    margin-left: 0;
+    margin-right: 8px;
+}

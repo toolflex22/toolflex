@@ -83,6 +83,33 @@
                     <button id="copy-clean-btn" onclick="copyCleanedText()" style="display: none; margin-top: 10px; background-color: #475569; color: #f8fafc; border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">نسخ النص</button>
                 </div>
             </div>
+            <div class="tool-card">
+                <h3 id="tool4-title">🔒 مولد كلمات المرور القوية</h3>
+                <p id="tool4-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">أنشئ كلمات مرور عشوائية ومستحيلة التخمين لحماية حساباتك فوراً.</p>
+                
+                <div style="background-color: #0f172a; padding: 12px; border-radius: 8px; border: 1px solid #334155; margin-bottom: 15px; font-size: 0.9rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; align-items: center;">
+                        <span id="label-pass-length">طول كلمة المرور:</span>
+                        <input type="number" id="pass-length" value="12" min="6" max="32" style="width: 50px; padding: 5px; background: #1e293b; color: #f8fafc; border: 1px solid #334155; border-radius: 4px; text-align: center;">
+                    </div>
+                    <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                        <input type="checkbox" id="pass-numbers" checked> <span id="label-pass-num">تضمين أرقام (0-9)</span>
+                    </label>
+                    <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                        <input type="checkbox" id="pass-symbols" checked> <span id="label-pass-sym">تضمين رموز (!@#$)</span>
+                    </label>
+                    <label style="display: block; cursor: pointer;">
+                        <input type="checkbox" id="pass-uppercase" checked> <span id="label-pass-upper">تضمين حروف كبيرة (A-Z)</span>
+                    </label>
+                </div>
+
+                <button id="generate-pass-btn" onclick="generatePassword()" style="width: 100%; background-color: #38bdf8; color: #0f172a; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 15px;">توليد كلمة المرور</button>
+                
+                <div class="results-box" style="position: relative;">
+                    <div id="password-output" style="color: #94a3b8; font-size: 1rem; min-height: 35px; word-break: break-all; font-family: monospace; letter-spacing: 1px;">كلمة المرور ستظهر هنا...</div>
+                    <button id="copy-pass-btn" onclick="copyPassword()" style="display: none; margin-top: 10px; background-color: #475569; color: #f8fafc; border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">نسخ الباسورد</button>
+                </div>
+            </div>
 
         </div>
     </main>

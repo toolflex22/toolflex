@@ -122,6 +122,17 @@ function switchLanguage() {
         if(document.getElementById('cleaner-output').innerText === "النص المنظف سيظهر هنا...") {
             document.getElementById('cleaner-output').innerText = "Cleaned text will appear here...";
         }
+        document.getElementById('tool4-title').innerText = "🔒 Secure Password Generator";
+        document.getElementById('tool4-desc').innerText = "Create random and unguessable passwords to protect your accounts instantly.";
+        document.getElementById('label-pass-length').innerText = "Password Length:";
+        document.getElementById('label-pass-num').innerText = "Include Numbers (0-9)";
+        document.getElementById('label-pass-sym').innerText = "Include Symbols (!@#$)";
+        document.getElementById('label-pass-upper').innerText = "Include Uppercase (A-Z)";
+        document.getElementById('generate-pass-btn').innerText = "Generate Password";
+        document.getElementById('copy-pass-btn').innerText = "Copy Password";
+        if(document.getElementById('password-output').innerText === "كلمة المرور ستظهر هنا...") {
+            document.getElementById('password-output').innerText = "Password will appear here...";
+        }
     } else {
         currentLanguage = 'ar';
         html.setAttribute('lang', 'ar');
@@ -157,6 +168,17 @@ function switchLanguage() {
         document.getElementById('copy-clean-btn').innerText = "نسخ النص";
         if(document.getElementById('cleaner-output').innerText === "Cleaned text will appear here...") {
             document.getElementById('cleaner-output').innerText = "النص المنظف سيظهر هنا...";
+        }
+        document.getElementById('tool4-title').innerText = "🔒 مولد كلمات المرور القوية";
+        document.getElementById('tool4-desc').innerText = "أنشئ كلمات مرور عشوائية ومستحيلة التخمين لحماية حساباتك فوراً.";
+        document.getElementById('label-pass-length').innerText = "طول كلمة المرور:";
+        document.getElementById('label-pass-num').innerText = "تضمين أرقام (0-9)";
+        document.getElementById('label-pass-sym').innerText = "تضمين رموز (!@#$)";
+        document.getElementById('label-pass-upper').innerText = "تضمين حروف كبيرة (A-Z)";
+        document.getElementById('generate-pass-btn').innerText = "توليد كلمة المرور";
+        document.getElementById('copy-pass-btn').innerText = "نسخ الباسورد";
+        if(document.getElementById('password-output').innerText === "Password will appear here...") {
+            document.getElementById('password-output').innerText = "كلمة المرور ستظهر هنا...";
         }
     }
 }
@@ -206,6 +228,65 @@ function copyCleanedText() {
     const textToCopy = outputElement.innerText;
     navigator.clipboard.writeText(textToCopy).then(() => {
         const copyBtn = document.getElementById('copy-clean-btn');
+        if (!copyBtn) return;
+
+        const originalText = copyBtn.innerText;
+        copyBtn.innerText = currentLanguage === 'ar' ? "تم النسخ! ✓" : "Copied! ✓";
+        copyBtn.style.backgroundColor = "#22c55e";
+        
+        setTimeout(() => {
+            copyBtn.innerText = originalText;
+            copyBtn.style.backgroundColor = "#475569";
+        }, 2000);
+    });
+}
+// وظيفة مولد كلمات المرور القوية
+function generatePassword() {
+    const lengthInput = document.getElementById('pass-length');
+    const includeNumbers = document.getElementById('pass-numbers').checked;
+    const includeSymbols = document.getElementById('pass-symbols').checked;
+    const includeUppercase = document.getElementById('pass-uppercase').checked;
+    const outputElement = document.getElementById('password-output');
+    const copyBtn = document.getElementById('copy-pass-btn');
+
+    if (!lengthInput || !outputElement) return;
+
+    let length = parseInt(lengthInput.value);
+    
+    // الأمان وضبط الحدود
+    if (isNaN(length) || length < 6) length = 6;
+    if (length > 32) length = 32;
+    lengthInput.value = length;
+
+    // مجموعات الأحرف الأساسية
+    const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+    const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const numberChars = "0123456789";
+    const symbolChars = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+
+    let availableChars = lowercaseChars; // الحروف الصغيرة إجبارية دائماً
+    if (includeUppercase) availableChars += uppercaseChars;
+    if (includeNumbers) availableChars += numberChars;
+    if (includeSymbols) availableChars += symbolChars;
+
+    let generatedPassword = "";
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * availableChars.length);
+        generatedPassword += availableChars[randomIndex];
+    }
+
+    outputElement.textContent = generatedPassword;
+    if (copyBtn) copyBtn.style.display = "inline-block";
+}
+
+// وظيفة نسخ كلمة المرور المحدثة
+function copyPassword() {
+    const outputElement = document.getElementById('password-output');
+    if (!outputElement) return;
+
+    const textToCopy = outputElement.textContent;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        const copyBtn = document.getElementById('copy-pass-btn');
         if (!copyBtn) return;
 
         const originalText = copyBtn.innerText;
