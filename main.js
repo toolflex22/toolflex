@@ -133,6 +133,16 @@ function switchLanguage() {
         if(document.getElementById('password-output').innerText === "كلمة المرور ستظهر هنا...") {
             document.getElementById('password-output').innerText = "Password will appear here...";
         }
+        document.getElementById('tool5-title').innerText = "🔠 English Case Converter";
+        document.getElementById('tool5-desc').innerText = "Convert English text to UPPERCASE, lowercase, or Title Case instantly.";
+        document.getElementById('case-input').placeholder = "Enter your English text here...";
+        document.getElementById('case-upper-btn').innerText = "UPPERCASE";
+        document.getElementById('case-lower-btn').innerText = "lowercase";
+        document.getElementById('case-cap-btn').innerText = "Title Case";
+        document.getElementById('copy-case-btn').innerText = "Copy Result";
+        if(document.getElementById('case-output').innerText === "النتيجة ستظهر هنا...") {
+            document.getElementById('case-output').innerText = "Result will appear here...";
+        }
     } else {
         currentLanguage = 'ar';
         html.setAttribute('lang', 'ar');
@@ -179,6 +189,16 @@ function switchLanguage() {
         document.getElementById('copy-pass-btn').innerText = "نسخ الباسورد";
         if(document.getElementById('password-output').innerText === "Password will appear here...") {
             document.getElementById('password-output').innerText = "كلمة المرور ستظهر هنا...";
+        }
+        document.getElementById('tool5-title').innerText = "🔠 محول حالة الأحرف الإنجليزية";
+        document.getElementById('tool5-desc').innerText = "حوّل النصوص الإنجليزية إلى حروف كبيرة، صغيرة، أو عناوين بضغطة زر.";
+        document.getElementById('case-input').placeholder = "Enter your English text here / أدخل النص الإنجليزي هنا...";
+        document.getElementById('case-upper-btn').innerText = "كبيرة UPPER";
+        document.getElementById('case-lower-btn').innerText = "صغيرة lower";
+        document.getElementById('case-cap-btn').innerText = "عنوان Title";
+        document.getElementById('copy-case-btn').innerText = "نسخ النتيجة";
+        if(document.getElementById('case-output').innerText === "Result will appear here...") {
+            document.getElementById('case-output').innerText = "النتيجة ستظهر هنا...";
         }
     }
 }
@@ -287,6 +307,57 @@ function copyPassword() {
     const textToCopy = outputElement.textContent;
     navigator.clipboard.writeText(textToCopy).then(() => {
         const copyBtn = document.getElementById('copy-pass-btn');
+        if (!copyBtn) return;
+
+        const originalText = copyBtn.innerText;
+        copyBtn.innerText = currentLanguage === 'ar' ? "تم النسخ! ✓" : "Copied! ✓";
+        copyBtn.style.backgroundColor = "#22c55e";
+        
+        setTimeout(() => {
+            copyBtn.innerText = originalText;
+            copyBtn.style.backgroundColor = "#475569";
+        }, 2000);
+    });
+}
+// وظيفة محول حالة الأحرف الإنجليزية
+function convertCase(type) {
+    const inputElement = document.getElementById('case-input');
+    const outputElement = document.getElementById('case-output');
+    const copyBtn = document.getElementById('copy-case-btn');
+    
+    if (!inputElement || !outputElement) return;
+    
+    const text = inputElement.value;
+    
+    if (text.trim() === "") {
+        outputElement.textContent = currentLanguage === 'ar' ? "الرجاء إدخال نص إنجليزي أولاً!" : "Please enter some English text first!";
+        if (copyBtn) copyBtn.style.display = "none";
+        return;
+    }
+    
+    let resultText = "";
+    
+    if (type === 'upper') {
+        resultText = text.toUpperCase();
+    } else if (type === 'lower') {
+        resultText = text.toLowerCase();
+    } else if (type === 'capitalize') {
+        // تحويل الحرف الأول من كل كلمة إلى حرف كبير
+        resultText = text.toLowerCase().replace(/\b\w/g, char => char.toUpperCase());
+    }
+    
+    outputElement.textContent = resultText;
+    if (copyBtn) copyBtn.style.display = "inline-block";
+}
+
+// وظيفة نسخ نتيجة محول الحالات
+function copyCaseText() {
+    const outputElement = document.getElementById('case-output');
+    if (!outputElement) return;
+
+    const textToCopy = outputElement.textContent;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        const copyBtn = document.getElementById('copy-case-btn');
         if (!copyBtn) return;
 
         const originalText = copyBtn.innerText;

@@ -110,6 +110,23 @@
                     <button id="copy-pass-btn" onclick="copyPassword()" style="display: none; margin-top: 10px; background-color: #475569; color: #f8fafc; border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">نسخ الباسورد</button>
                 </div>
             </div>
+            <div class="tool-card">
+                <h3 id="tool5-title">🔠 محول حالة الأحرف الإنجليزية</h3>
+                <p id="tool5-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">حوّل النصوص الإنجليزية إلى حروف كبيرة، صغيرة، أو عناوين بضغطة زر.</p>
+                
+                <textarea id="case-input" placeholder="Enter your English text here / أدخل النص الإنجليزي هنا..." style="width: 100%; height: 90px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; padding: 10px; box-sizing: border-box; resize: vertical; margin-bottom: 10px;"></textarea>
+                
+                <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap;">
+                    <button id="case-upper-btn" onclick="convertCase('upper')" style="flex: 1; background-color: #38bdf8; color: #0f172a; border: none; padding: 8px 5px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.8rem;">كبيرة UPPER</button>
+                    <button id="case-lower-btn" onclick="convertCase('lower')" style="flex: 1; background-color: #38bdf8; color: #0f172a; border: none; padding: 8px 5px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.8rem;">صغيرة lower</button>
+                    <button id="case-cap-btn" onclick="convertCase('capitalize')" style="flex: 1; background-color: #38bdf8; color: #0f172a; border: none; padding: 8px 5px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.8rem;">عنوان Title</button>
+                </div>
+                
+                <div class="results-box" style="position: relative;">
+                    <div id="case-output" style="color: #94a3b8; font-size: 0.95rem; min-height: 35px; word-break: break-all; white-space: pre-wrap;">النتيجة ستظهر هنا...</div>
+                    <button id="copy-case-btn" onclick="copyCaseText()" style="display: none; margin-top: 10px; background-color: #475569; color: #f8fafc; border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">نسخ النتيجة</button>
+                </div>
+            </div>
 
         </div>
     </main>
