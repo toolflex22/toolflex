@@ -194,6 +194,34 @@
                     <a id="download-img-btn" href="#" download="compressed_image.jpg" style="display: none; margin-top: 15px; background-color: #22c55e; color: #ffffff; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; cursor: pointer;">تحميل الصورة المضغوطة ✓</a>
                 </div>
             </div>
+            <div class="tool-card">
+                <h3 id="tool10-title">💱 محول العملات والعملات الرقمية الفوري</h3>
+                <p id="tool10-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">تابع أسعار الصرف الحية وحوّل بين العملات العالمية والرقيمة فوراً.</p>
+                
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px;">
+                    <input type="number" id="currency-amount" value="1" min="1" style="width: 100%; padding: 10px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; box-sizing: border-box; text-align: center;">
+                    
+                    <div style="display: flex; gap: 10px;">
+                        <select id="currency-from" style="flex: 1; padding: 10px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px;">
+                            <option value="USD">USD - دولار أمريكي</option>
+                            <option value="EUR">EUR - يورو</option>
+                            <option value="BTC">BTC - بيتكوين</option>
+                        </select>
+                        <select id="currency-to" style="flex: 1; padding: 10px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px;">
+                            <option value="EUR">EUR - يورو</option>
+                            <option value="USD">USD - دولار أمريكي</option>
+                            <option value="SAR">SAR - ريال سعودي</option>
+                            <option value="EGP">EGP - جنيه مصري</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button id="convert-currency-btn" onclick="convertCurrency()" style="width: 100%; background-color: #38bdf8; color: #0f172a; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 15px;">احسب السعر الحي الآن</button>
+                
+                <div class="results-box" style="text-align: center;">
+                    <div id="currency-output" style="color: #38bdf8; font-size: 1.2rem; font-weight: bold; min-height: 35px;">النتيجة الحية ستظهر هنا...</div>
+                </div>
+            </div>
 
         </div>
     </main>

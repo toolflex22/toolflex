@@ -177,6 +177,12 @@ function switchLanguage() {
         if(document.getElementById('compress-output').innerText === "الصورة المضغوطة ستظهر هنا...") {
             document.getElementById('compress-output').innerText = "Compressed image will appear here...";
         }
+        document.getElementById('tool10-title').innerText = "💱 Live Currency & Crypto Converter";
+        document.getElementById('tool10-desc').innerText = "Track live exchange rates and convert between world currencies and crypto instantly.";
+        document.getElementById('convert-currency-btn').innerText = "Calculate Live Rate";
+        if(document.getElementById('currency-output').innerText === "النتيجة الحية ستظهر هنا...") {
+            document.getElementById('currency-output').innerText = "Live result will appear here...";
+        }
     } else {
         currentLanguage = 'ar';
         html.setAttribute('lang', 'ar');
@@ -267,6 +273,12 @@ function switchLanguage() {
         document.getElementById('download-img-btn').innerText = "تحميل الصورة المضغوطة ✓";
         if(document.getElementById('compress-output').innerText === "Compressed image will appear here...") {
             document.getElementById('compress-output').innerText = "الصورة المضغوطة ستظهر هنا...";
+        }
+        document.getElementById('tool10-title').innerText = "💱 محول العملات والعملات الرقمية الفوري";
+        document.getElementById('tool10-desc').innerText = "تابع أسعار الصرف الحية وحوّل بين العملات العالمية والرقيمة فوراً.";
+        document.getElementById('convert-currency-btn').innerText = "احسب السعر الحي الآن";
+        if(document.getElementById('currency-output').innerText === "Live result will appear here...") {
+            document.getElementById('currency-output').innerText = "النتيجة الحية ستظهر هنا...";
         }
     }
 }
@@ -630,4 +642,41 @@ function compressImage() {
             }
         };
     };
+}
+// وظيفة محول العملات الفوري عبر API حي
+async function convertCurrency() {
+    const amountInput = document.getElementById('currency-amount');
+    const fromSelect = document.getElementById('currency-from');
+    const toSelect = document.getElementById('currency-to');
+    const outputElement = document.getElementById('currency-output');
+
+    if (!amountInput || !fromSelect || !toSelect || !outputElement) return;
+
+    const amount = parseFloat(amountInput.value);
+    const from = fromSelect.value;
+    const to = toSelect.value;
+
+    if (isNaN(amount) || amount <= 0) {
+        outputElement.textContent = currentLanguage === 'ar' ? "الرجاء إدخال مبلغ صحيح!" : "Please enter a valid amount!";
+        return;
+    }
+
+    outputElement.textContent = currentLanguage === 'ar' ? "جاري جلب الأسعار الحية..." : "Fetching live rates...";
+
+    try {
+        // استدعاء الـ API المفتوح والمجاني لجلب أسعار الصرف الحية
+        const response = await fetch(`https://open.er-api.com/v6/latest/${from}`);
+        const data = await response.json();
+
+        if (data && data.rates && data.rates[to]) {
+            const rate = data.rates[to];
+            const result = (amount * rate).toFixed(4);
+            outputElement.textContent = `${amount} ${from} = ${result} ${to}`;
+        } else {
+            throw new Error("Rate not found");
+        }
+    } catch (error) {
+        console.error("Error fetching currency:", error);
+        outputElement.textContent = currentLanguage === 'ar' ? "عذراً، فشل الاتصال بالسيرفر وجلب السعر الحالي!" : "Error fetching live rates!";
+    }
 }
