@@ -190,3 +190,10 @@ html[dir="ltr"] .close-btn {
     left: auto;
     right: 20px;
 }
+/* تحسين استجابة أزرار الأدوات على الشاشات الصغيرة */
+@media (max-width: 480px) {
+    .tool-card button {
+        width: 100%;
+        font-size: 0.8rem;
+    }
+}

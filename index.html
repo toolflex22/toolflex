@@ -66,6 +66,23 @@
                     <button id="copy-tags-btn" onclick="copyTags()" style="display: none; margin-top: 10px; background-color: #475569; color: #f8fafc; border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">نسخ الكل</button>
                 </div>
             </div>
+            <!-- كرت الأداة الثالثة: منظف النصوص -->
+            <div class="tool-card">
+                <h3 id="tool3-title">🧹 منظف النصوص الذكي</h3>
+                <p id="tool3-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">قم بإزالة الفراغات الزائدة والأسطر الفارغة لتنظيف نصوصك ومقالاتك فوراً.</p>
+                
+                <textarea id="cleaner-input" placeholder="أدخل أو الصق النص المراد تنظيفه هنا..." style="width: 100%; height: 100px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; padding: 10px; box-sizing: border-box; resize: vertical; margin-bottom: 10px;"></textarea>
+                
+                <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                    <button id="clean-spaces-btn" onclick="cleanText('spaces')" style="flex: 1; background-color: #38bdf8; color: #0f172a; border: none; padding: 8px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.85rem;">إزالة الفراغات</button>
+                    <button id="clean-lines-btn" onclick="cleanText('lines')" style="flex: 1; background-color: #38bdf8; color: #0f172a; border: none; padding: 8px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.85rem;">إزالة الأسطر الفارغة</button>
+                </div>
+                
+                <div class="results-box" style="position: relative;">
+                    <div id="cleaner-output" style="color: #94a3b8; font-size: 0.95rem; min-height: 40px; word-break: break-all; white-space: pre-wrap;">النص المنظف سيظهر هنا...</div>
+                    <button id="copy-clean-btn" onclick="copyCleanedText()" style="display: none; margin-top: 10px; background-color: #475569; color: #f8fafc; border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">نسخ النص</button>
+                </div>
+            </div>
 
         </div>
     </main>

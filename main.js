@@ -113,6 +113,15 @@ function switchLanguage() {
         document.getElementById('link-terms').innerText = "Terms of Service";
         document.getElementById('privacy-text').innerHTML = `<h2>Privacy Policy</h2><p>At ToolFlex, the privacy of our visitors is of extreme importance to us. We do not collect, store, or share any data or text entered by the user. All operations are processed 100% locally inside your browser.</p><p>Third-party ad networks may use cookies to serve ads based on your prior visits to our website or other sites.</p>`;
         document.getElementById('terms-text').innerHTML = `<h2>Terms of Service</h2><p>By using ToolFlex, you agree to comply with the following terms:</p><ul><li>Tools are provided "as is" without warranties. We are not liable for any errors resulting from their use.</li><li>You are free to use these tools for personal or legal commercial purposes.</li><li>Any attempt to misuse the site or flood it with fake requests to harm the service is strictly prohibited.</li></ul>`;
+        document.getElementById('tool3-title').innerText = "🧹 Smart Text Cleaner";
+        document.getElementById('tool3-desc').innerText = "Remove extra spaces and empty lines to clean your texts and articles instantly.";
+        document.getElementById('cleaner-input').placeholder = "Enter or paste text to clean here...";
+        document.getElementById('clean-spaces-btn').innerText = "Remove Spaces";
+        document.getElementById('clean-lines-btn').innerText = "Remove Empty Lines";
+        document.getElementById('copy-clean-btn').innerText = "Copy Text";
+        if(document.getElementById('cleaner-output').innerText === "النص المنظف سيظهر هنا...") {
+            document.getElementById('cleaner-output').innerText = "Cleaned text will appear here...";
+        }
     } else {
         currentLanguage = 'ar';
         html.setAttribute('lang', 'ar');
@@ -140,5 +149,62 @@ function switchLanguage() {
         document.getElementById('link-terms').innerText = "شروط الاستخدام";
         document.getElementById('privacy-text').innerHTML = `<h2>سياسة الخصوصية</h2><p>في ToolFlex، خصوصية زوارنا لها أهمية بالغة بالنسبة لنا. نحن لا نجمع، ولا نخزن، ولا نشارك أي بيانات أو نصوص يقوم المستخدم بكتابتها أو معالجتها داخل الأدوات. جميع العمليات تتم محلياً بالكامل داخل متصفحك.</p><p>قد تستخدم شبكات الإعلانات الطرف الثالث ملفات تعريف الارتباط (Cookies) لعرض الإعلانات بناءً على زياراتك السابقة لموقعنا أو لمواقع أخرى.</p>`;
         document.getElementById('terms-text').innerHTML = `<h2>شروط الاستخدام</h2><p>باستخدامك لموقع ToolFlex، فإنك توافق على الالتزام بالشروط التالية:</p><ul><li>يتم تقديم الأدوات "كما هي" بدون أي ضمانات، ونحن غير مسؤولين عن أي خطأ ناتج عن استخدامها.</li><li>يُسمح باستخدام الأدوات بشكل مجاني بالكامل ولأغراض شخصية أو تجارية قانونية.</li><li>يُمنع محاولة إساءة استخدام الموقع أو محاولة إغراقه بطلبات وهمية تضر بالخادم أو بالخدمة.</li></ul>`;
+        document.getElementById('tool3-title').innerText = "🧹 منظف النصوص الذكي";
+        document.getElementById('tool3-desc').innerText = "قم بإزالة الفراغات الزائدة والأسطر الفارغة لتنظيف نصوصك ومقالاتك فوراً.";
+        document.getElementById('cleaner-input').placeholder = "أدخل أو الصق النص المراد تنظيفه هنا...";
+        document.getElementById('clean-spaces-btn').innerText = "إزالة الفراغات";
+        document.getElementById('clean-lines-btn').innerText = "إزالة الأسطر الفارغة";
+        document.getElementById('copy-clean-btn').innerText = "نسخ النص";
+        if(document.getElementById('cleaner-output').innerText === "Cleaned text will appear here...") {
+            document.getElementById('cleaner-output').innerText = "النص المنظف سيظهر هنا...";
+        }
     }
+}
+// وظيفة منظف النصوص الذكي
+function cleanText(actionType) {
+    const inputElement = document.getElementById('cleaner-input');
+    const outputElement = document.getElementById('cleaner-output');
+    const copyBtn = document.getElementById('copy-clean-btn');
+    
+    if (!inputElement || !outputElement) return;
+    
+    let text = inputElement.value;
+    
+    if (text.trim() === "") {
+        outputElement.innerText = currentLanguage === 'ar' ? "الرجاء إدخال نص أولاً لتنظيفه!" : "Please enter some text first!";
+        if (copyBtn) copyBtn.style.display = "none";
+        return;
+    }
+    
+    if (actionType === 'spaces') {
+        // إزالة الفراغات الزائدة بين الكلمات وفي البداية والنهاية
+        text = text.trim().replace(/\s+/g, ' ');
+    } else if (actionType === 'lines') {
+        // إزالة الأسطر الفارغة أو المتكررة بدون سبب
+        text = text.split('\n').filter(line => line.trim() !== "").join('\n');
+    }
+    
+    outputElement.innerText = text;
+    if (copyBtn) copyBtn.style.display = "inline-block";
+}
+
+// وظيفة نسخ النص المنظف
+function copyCleanedText() {
+    const outputElement = document.getElementById('cleaner-output');
+    if (!outputElement) return;
+
+    const textToCopy = outputElement.innerText;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        const copyBtn = document.getElementById('copy-clean-btn');
+        if (!copyBtn) return;
+
+        const originalText = copyBtn.innerText;
+        copyBtn.innerText = currentLanguage === 'ar' ? "تم النسخ! ✓" : "Copied! ✓";
+        copyBtn.style.backgroundColor = "#22c55e";
+        
+        setTimeout(() => {
+            copyBtn.innerText = originalText;
+            copyBtn.style.backgroundColor = "#475569";
+        }, 2000);
+    });
 }
