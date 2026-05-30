@@ -127,6 +127,22 @@
                     <button id="copy-case-btn" onclick="copyCaseText()" style="display: none; margin-top: 10px; background-color: #475569; color: #f8fafc; border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">نسخ النتيجة</button>
                 </div>
             </div>
+            <div class="tool-card">
+                <h3 id="tool6-title">🔢 مستخرج الأرقام الذكي</h3>
+                <p id="tool6-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">استخرج جميع الأرقام المتواجدة داخل أي نص ضخم وافصل بينها بضغطة زر واحدة.</p>
+                
+                <textarea id="extract-input" placeholder="أدخل أو الصق النص المختلط هنا (مثال: أحمد 25 سنة وراتبه 1500)..." style="width: 100%; height: 90px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; padding: 10px; box-sizing: border-box; resize: vertical; margin-bottom: 10px;"></textarea>
+                
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <button id="extract-space-btn" onclick="extractNumbers('space')" style="flex: 1; background-color: #38bdf8; color: #0f172a; border: none; padding: 9px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.85rem;">فصل بمسافة</button>
+                    <button id="extract-comma-btn" onclick="extractNumbers('comma')" style="flex: 1; background-color: #38bdf8; color: #0f172a; border: none; padding: 9px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.85rem;">فصل بفاصلة (،)</button>
+                </div>
+                
+                <div class="results-box" style="position: relative;">
+                    <div id="extract-output" style="color: #94a3b8; font-size: 0.95rem; min-height: 35px; word-break: break-all;">الأرقام المستخرجة ستظهر هنا...</div>
+                    <button id="copy-extract-btn" onclick="copyExtractedNumbers()" style="display: none; margin-top: 10px; background-color: #475569; color: #f8fafc; border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">نسخ الأرقام</button>
+                </div>
+            </div>
 
         </div>
     </main>

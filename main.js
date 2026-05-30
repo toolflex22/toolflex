@@ -143,6 +143,15 @@ function switchLanguage() {
         if(document.getElementById('case-output').innerText === "النتيجة ستظهر هنا...") {
             document.getElementById('case-output').innerText = "Result will appear here...";
         }
+        document.getElementById('tool6-title').innerText = "🔢 Smart Numbers Extractor";
+        document.getElementById('tool6-desc').innerText = "Extract all numbers from any huge text and separate them with a single click.";
+        document.getElementById('extract-input').placeholder = "Enter or paste mixed text here (e.g., John is 25 and earns 1500)...";
+        document.getElementById('extract-space-btn').innerText = "Separate by Space";
+        document.getElementById('extract-comma-btn').innerText = "Separate by Comma";
+        document.getElementById('copy-extract-btn').innerText = "Copy Numbers";
+        if(document.getElementById('extract-output').innerText === "الأرقام المستخرجة ستظهر هنا...") {
+            document.getElementById('extract-output').innerText = "Extracted numbers will appear here...";
+        }
     } else {
         currentLanguage = 'ar';
         html.setAttribute('lang', 'ar');
@@ -199,6 +208,15 @@ function switchLanguage() {
         document.getElementById('copy-case-btn').innerText = "نسخ النتيجة";
         if(document.getElementById('case-output').innerText === "Result will appear here...") {
             document.getElementById('case-output').innerText = "النتيجة ستظهر هنا...";
+        }
+        document.getElementById('tool6-title').innerText = "🔢 مستخرج الأرقام الذكي";
+        document.getElementById('tool6-desc').innerText = "استخرج جميع الأرقام المتواجدة داخل أي نص ضخم وافصل بينها بضغطة زر واحدة.";
+        document.getElementById('extract-input').placeholder = "أدخل أو الصق النص المختلط هنا (مثال: أحمد 25 سنة وراتبه 1500)...";
+        document.getElementById('extract-space-btn').innerText = "فصل بمسافة";
+        document.getElementById('extract-comma-btn').innerText = "فصل بفاصلة (،)";
+        document.getElementById('copy-extract-btn').innerText = "نسخ الأرقام";
+        if(document.getElementById('extract-output').innerText === "Extracted numbers will appear here...") {
+            document.getElementById('extract-output').innerText = "الأرقام المستخرجة ستظهر هنا...";
         }
     }
 }
@@ -358,6 +376,64 @@ function copyCaseText() {
     const textToCopy = outputElement.textContent;
     navigator.clipboard.writeText(textToCopy).then(() => {
         const copyBtn = document.getElementById('copy-case-btn');
+        if (!copyBtn) return;
+
+        const originalText = copyBtn.innerText;
+        copyBtn.innerText = currentLanguage === 'ar' ? "تم النسخ! ✓" : "Copied! ✓";
+        copyBtn.style.backgroundColor = "#22c55e";
+        
+        setTimeout(() => {
+            copyBtn.innerText = originalText;
+            copyBtn.style.backgroundColor = "#475569";
+        }, 2000);
+    });
+}
+// وظيفة مستخرج الأرقام من النصوص
+function extractNumbers(separatorType) {
+    const inputElement = document.getElementById('extract-input');
+    const outputElement = document.getElementById('extract-output');
+    const copyBtn = document.getElementById('copy-extract-btn');
+    
+    if (!inputElement || !outputElement) return;
+    
+    const text = inputElement.value;
+    
+    if (text.trim() === "") {
+        outputElement.textContent = currentLanguage === 'ar' ? "الرجاء إدخال نص يحتوي على أرقام أولاً!" : "Please enter some text containing numbers first!";
+        if (copyBtn) copyBtn.style.display = "none";
+        return;
+    }
+    
+    // استخدام الريجكس للبحث عن كل الأرقام المتتالية في النص
+    const numbersArray = text.match(/\d+/g);
+    
+    // إذا لم يتم العثور على أي رقم في النص
+    if (!numbersArray) {
+        outputElement.textContent = currentLanguage === 'ar' ? "لم يتم العثور على أي أرقام في النص المدخل!" : "No numbers found in the entered text!";
+        if (copyBtn) copyBtn.style.display = "none";
+        return;
+    }
+    
+    // دمج الأرقام بناءً على نوع الفاصلة المختار
+    let resultText = "";
+    if (separatorType === 'space') {
+        resultText = numbersArray.join(' ');
+    } else if (separatorType === 'comma') {
+        resultText = numbersArray.join(currentLanguage === 'ar' ? ' ، ' : ', ');
+    }
+    
+    outputElement.textContent = resultText;
+    if (copyBtn) copyBtn.style.display = "inline-block";
+}
+
+// وظيفة نسخ الأرقام المستخرجة
+function copyExtractedNumbers() {
+    const outputElement = document.getElementById('extract-output');
+    if (!outputElement) return;
+
+    const textToCopy = outputElement.textContent;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        const copyBtn = document.getElementById('copy-extract-btn');
         if (!copyBtn) return;
 
         const originalText = copyBtn.innerText;
