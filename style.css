@@ -331,3 +331,69 @@ body.light-theme .modal-content {
     border-color: #cbd5e1;
     color: #0f172a;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* الألوان الافتراضية للموقع (الوضع الداكن الأساسي الذي صممته) */
+body {
+    background-color: #0f172a;
+    color: #f8fafc;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tool-card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    color: #f8fafc;
+}
+
+/* ☀️ الألوان البديلة عند تفعيل الوضع الفاتح */
+body.light-theme {
+    background-color: #f8fafc;
+    color: #0f172a;
+}
+
+body.light-theme .hero h1 {
+    color: #0f172a;
+}
+
+body.light-theme .hero p {
+    color: #475569;
+}
+
+body.light-theme .tool-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    color: #0f172a;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .tool-card p {
+    color: #64748b !important;
+}
+
+body.light-theme .results-box {
+    background-color: #f1f5f9;
+    color: #334155;
+}
