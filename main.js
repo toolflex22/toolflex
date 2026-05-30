@@ -161,31 +161,41 @@ function switchLanguage() {
     }
 }
 // وظيفة منظف النصوص الذكي
+// وظيفة منظف النصوص الذكي - النسخة المستقرة والمحسنة 100%
 function cleanText(actionType) {
     const inputElement = document.getElementById('cleaner-input');
     const outputElement = document.getElementById('cleaner-output');
     const copyBtn = document.getElementById('copy-clean-btn');
     
-    if (!inputElement || !outputElement) return;
+    if (!inputElement || !outputElement) {
+        console.error("عذراً، لم يتم العثور على عناصر منظف النصوص في الـ HTML!");
+        return;
+    }
     
     let text = inputElement.value;
     
-    if (text.trim() === "") {
-        outputElement.innerText = currentLanguage === 'ar' ? "الرجاء إدخال نص أولاً لتنظيفه!" : "Please enter some text first!";
+    // فحص ما إذا كانت الخانة فارغة تماماً
+    if (!text || text.trim() === "") {
+        outputElement.textContent = currentLanguage === 'ar' ? "الرجاء إدخال نص أولاً لتنظيفه!" : "Please enter some text first!";
         if (copyBtn) copyBtn.style.display = "none";
         return;
     }
     
     if (actionType === 'spaces') {
-        // إزالة الفراغات الزائدة بين الكلمات وفي البداية والنهاية
-        text = text.trim().replace(/\s+/g, ' ');
+        // تنظيف الفراغات المتكررة والزائدة في كامل النص وجعلها فراغاً واحداً فقط
+        text = text.replace(/[ \t]+/g, ' ').trim();
     } else if (actionType === 'lines') {
-        // إزالة الأسطر الفارغة أو المتكررة بدون سبب
+        // تنظيف الأسطر الفارغة تماماً وإزالة الأسطر الوهمية المتكررة
         text = text.split('\n').filter(line => line.trim() !== "").join('\n');
     }
     
-    outputElement.innerText = text;
-    if (copyBtn) copyBtn.style.display = "inline-block";
+    // استخدام textContent لضمان حقن النص الصافي مباشرة بدون تداخل مع تنسيقات الـ CSS
+    outputElement.textContent = text;
+    
+    // إظهار زر النسخ فوراً
+    if (copyBtn) {
+        copyBtn.style.display = "inline-block";
+    }
 }
 
 // وظيفة نسخ النص المنظف
