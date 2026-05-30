@@ -192,6 +192,28 @@ function switchLanguage() {
         if(document.getElementById('translate-output').innerText === "النص المترجم سيظهر هنا...") {
             document.getElementById('translate-output').innerText = "Translated text will appear here...";
         }
+        document.getElementById('tool11-title').innerText = "🌐 Quick Text Translator";
+        document.getElementById('tool11-desc').innerText = "Translate your texts instantly between multiple global languages with high speed.";
+        document.getElementById('translate-input').placeholder = "Enter text to translate here...";
+        document.getElementById('label-translate-to').innerText = "Translate To:";
+        document.getElementById('translate-btn').innerText = "Translate Now";
+        document.getElementById('copy-translate-btn').innerText = "Copy Translation";
+        
+        // ترجمة خيارات القائمة المنسدلة للإنجليزية
+        const langOptions = document.getElementById('translate-lang').options;
+        langOptions[0].text = "English";
+        langOptions[1].text = "Arabic";
+        langOptions[2].text = "French";
+        langOptions[3].text = "Russian";
+        langOptions[4].text = "German";
+        langOptions[5].text = "Italian";
+        langOptions[6].text = "Spanish";
+        langOptions[7].text = "Persian";
+        langOptions[8].text = "Kurdish";
+
+        if(document.getElementById('translate-output').innerText === "النص المترجم سيظهر هنا...") {
+            document.getElementById('translate-output').innerText = "Translated text will appear here...";
+        }
     } else {
         currentLanguage = 'ar';
         html.setAttribute('lang', 'ar');
@@ -295,6 +317,28 @@ function switchLanguage() {
         document.getElementById('label-translate-to').innerText = "الترجمة إلى:";
         document.getElementById('translate-btn').innerText = "ترجم النص الآن";
         document.getElementById('copy-translate-btn').innerText = "نسخ الترجمة";
+        if(document.getElementById('translate-output').innerText === "Translated text will appear here...") {
+            document.getElementById('translate-output').innerText = "النص المترجم سيظهر هنا...";
+        }
+        document.getElementById('tool11-title').innerText = "🌐 مترجم النصوص الفوري السريع";
+        document.getElementById('tool11-desc').innerText = "ترجم نصوصك فوراً بين اللغتين العربية والإنجليزية بدقة وسرعة فائقة.";
+        document.getElementById('translate-input').placeholder = "أدخل النص المراد ترجمته هنا...";
+        document.getElementById('label-translate-to').innerText = "الترجمة إلى:";
+        document.getElementById('translate-btn').innerText = "ترجم النص الآن";
+        document.getElementById('copy-translate-btn').innerText = "نسخ الترجمة";
+        
+        // إرجاع خيارات القائمة المنسدلة للعربية
+        const langOptionsAr = document.getElementById('translate-lang').options;
+        langOptionsAr[0].text = "English (الإنجليزية)";
+        langOptionsAr[1].text = "العربية (Arabic)";
+        langOptionsAr[2].text = "Français (الفرنسية)";
+        langOptionsAr[3].text = "Русский (الروسية)";
+        langOptionsAr[4].text = "Deutsch (الألمانية)";
+        langOptionsAr[5].text = "Italiano (الإيطالية)";
+        langOptionsAr[6].text = "Español (الإسبانية)";
+        langOptionsAr[7].text = "فارسی (الفارسية/الإيرانية)";
+        langOptionsAr[8].text = "Kurdî (الكردية)";
+
         if(document.getElementById('translate-output').innerText === "Translated text will appear here...") {
             document.getElementById('translate-output').innerText = "النص المترجم سيظهر هنا...";
         }
