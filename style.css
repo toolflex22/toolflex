@@ -207,3 +207,46 @@ html[dir="ltr"] .tool-card input[type="checkbox"] {
     margin-left: 0;
     margin-right: 8px;
 }
+/* تخصيص ألوان الوضع الفاتح */
+body.light-theme {
+    background-color: #f1f5f9; /* خلفية رمادية فاتحة ومريحة للعين */
+    color: #0f172a; /* نصوص داكنة */
+}
+
+body.light-theme header h1 {
+    color: #0f172a;
+}
+
+body.light-theme .tool-card {
+    background-color: #ffffff; /* كروت الأدوات تصبح بيضاء ناصعة */
+    border-color: #cbd5e1; /* حدود رمادية خفيفة */
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05); /* ظل ناعم للحس الجمالي */
+}
+
+body.light-theme .tool-card h3 {
+    color: #0f172a; /* عناوين الأدوات داكنة */
+}
+
+body.light-theme .tool-card p {
+    color: #475569 !important; /* وصف الأدوات رمادي غامق وواضح */
+}
+
+body.light-theme input, 
+body.light-theme textarea, 
+body.light-theme select {
+    background-color: #f8fafc !important; /* حقول الإدخال تصبح فاتحة */
+    color: #0f172a !important; /* نصوص الحقول داكنة */
+    border-color: #cbd5e1 !important;
+}
+
+body.light-theme .results-box {
+    background-color: #f8fafc !important; /* صناديق النتائج الفورية */
+    border-color: #cbd5e1 !important;
+}
+
+body.light-theme #wa-output,
+body.light-theme #qr-output,
+body.light-theme #compress-output,
+body.light-theme #translate-output {
+    color: #334155 !important;
+}

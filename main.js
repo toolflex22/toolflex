@@ -231,6 +231,10 @@ function switchLanguage() {
         document.getElementById('cv-skills').placeholder = "Skills (separate with commas)...";
         document.getElementById('cv-experience').placeholder = "Work Experience & Education...";
         document.getElementById('cv-btn').innerText = "Generate & Download CV as PDF";
+        const themeBtn = document.getElementById('theme-btn');
+        if(themeBtn) {
+            themeBtn.innerText = document.body.classList.contains('light-theme') ? "🌙 Dark Mode" : "☀️ Light Mode";
+        }
     } else {
         currentLanguage = 'ar';
         html.setAttribute('lang', 'ar');
@@ -376,6 +380,10 @@ function switchLanguage() {
         document.getElementById('cv-skills').placeholder = "المهارات (افصل بينها بفاصلة)...";
         document.getElementById('cv-experience').placeholder = "الخبرات المهنية والتعليم...";
         document.getElementById('cv-btn').innerText = "توليد وتحميل الـ CV كـ PDF";
+        const themeBtnAr = document.getElementById('theme-btn');
+        if(themeBtnAr) {
+            themeBtnAr.innerText = document.body.classList.contains('light-theme') ? "🌙 الوضع الداكن" : "☀️ الوضع الفاتح";
+        }
     }
 }
 // وظيفة منظف النصوص الذكي
@@ -936,3 +944,37 @@ function generateCV() {
     `);
     cvWindow.document.close();
 }
+// وظيفة تبديل الوضع الداكن والفاتح مع الحفظ في الذاكرة
+function toggleTheme() {
+    const body = document.body;
+    const themeBtn = document.getElementById('theme-btn');
+    if (!themeBtn) return;
+
+    // تبديل الكلاس الخاص بالوضع الفاتح
+    body.classList.toggle('light-theme');
+
+    // التحقق من الوضع الحالي للحفظ وتحديث الزر
+    if (body.classList.contains('light-theme')) {
+        localStorage.setItem('theme', 'light');
+        themeBtn.innerText = currentLanguage === 'ar' ? "🌙 الوضع الداكن" : "🌙 Dark Mode";
+    } else {
+        localStorage.setItem('theme', 'dark');
+        themeBtn.innerText = currentLanguage === 'ar' ? "☀️ الوضع الفاتح" : "☀️ Light Mode";
+    }
+}
+
+// دالة فحص وتطبيق الوضع المحفوظ تلقائياً عند تحميل الصفحة
+function checkSavedTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const themeBtn = document.getElementById('theme-btn');
+    
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+        if (themeBtn) {
+            themeBtn.innerText = currentLanguage === 'ar' ? "🌙 الوضع الداكن" : "🌙 Dark Mode";
+        }
+    }
+}
+
+// تشغيل الفحص التلقائي للوضع بمجرد تشغيل المستند
+document.addEventListener('DOMContentLoaded', checkSavedTheme);
