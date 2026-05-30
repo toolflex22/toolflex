@@ -221,6 +221,16 @@ function switchLanguage() {
         document.getElementById('cv-skills').placeholder = "Core Skills (separate with commas)...";
         document.getElementById('cv-experience').placeholder = "Experience or brief summary about yourself...";
         document.getElementById('cv-btn').innerText = "Generate & Download CV as PDF";
+        document.getElementById('tool12-title').innerText = "📄 Professional CV Builder";
+        document.getElementById('tool12-desc').innerText = "Create a European-style professional resume ready to print and download as PDF instantly.";
+        document.getElementById('cv-lang-label').innerText = "CV Language:";
+        document.getElementById('cv-name').placeholder = "Full Name...";
+        document.getElementById('cv-title').placeholder = "Job Title (e.g., Web Developer)...";
+        document.getElementById('cv-email').placeholder = "Email Address...";
+        document.getElementById('cv-phone').placeholder = "Phone Number...";
+        document.getElementById('cv-skills').placeholder = "Skills (separate with commas)...";
+        document.getElementById('cv-experience').placeholder = "Work Experience & Education...";
+        document.getElementById('cv-btn').innerText = "Generate & Download CV as PDF";
     } else {
         currentLanguage = 'ar';
         html.setAttribute('lang', 'ar');
@@ -355,6 +365,16 @@ function switchLanguage() {
         document.getElementById('cv-email').placeholder = "البريد الإلكتروني...";
         document.getElementById('cv-skills').placeholder = "المهارات الأساسية (افصل بينها بفاصلة)...";
         document.getElementById('cv-experience').placeholder = "الخبرات أو نبذة مختصرة عنك...";
+        document.getElementById('cv-btn').innerText = "توليد وتحميل الـ CV كـ PDF";
+        document.getElementById('tool12-title').innerText = "📄 منشئ السيرة الذاتية السريع (CV)";
+        document.getElementById('tool12-desc').innerText = "أنشئ سيرة ذاتية احترافية ومبسطة جاهزة للطباعة والتحميل كملف PDF فوراً.";
+        document.getElementById('cv-lang-label').innerText = "لغة الـ CV:";
+        document.getElementById('cv-name').placeholder = "الاسم الكامل...";
+        document.getElementById('cv-title').placeholder = "المسمى الوظيفي (مثال: مطور ويب)...";
+        document.getElementById('cv-email').placeholder = "البريد الإلكتروني...";
+        document.getElementById('cv-phone').placeholder = "رقم الهاتف...";
+        document.getElementById('cv-skills').placeholder = "المهارات (افصل بينها بفاصلة)...";
+        document.getElementById('cv-experience').placeholder = "الخبرات المهنية والتعليم...";
         document.getElementById('cv-btn').innerText = "توليد وتحميل الـ CV كـ PDF";
     }
 }
@@ -821,59 +841,92 @@ function copyTranslatedText() {
     });
 }
 // وظيفة منشئ السيرة الذاتية الاحترافية بصيغة PDF
+// وظيفة منشئ السيرة الذاتية الاحترافي متعدد اللغات (النظام الأوروبي المحسن)
 function generateCV() {
     const name = document.getElementById('cv-name').value.trim();
+    const jobTitle = document.getElementById('cv-title').value.trim();
     const email = document.getElementById('cv-email').value.trim();
+    const phone = document.getElementById('cv-phone').value.trim();
     const skills = document.getElementById('cv-skills').value.trim();
     const exp = document.getElementById('cv-experience').value.trim();
+    
+    // جلب اللغة المحددة لكتابة الـ CV
+    const cvLang = document.getElementById('cv-output-lang').value;
 
     if (name === "" || email === "") {
-        alert(currentLanguage === 'ar' ? "الرجاء إدخال الاسم والبريد الإلكتروني كحد أدنى!" : "Please enter at least your name and email!");
+        alert(currentLanguage === 'ar' ? "الرجاء إدخال الاسم والبريد الإلكتروني!" : "Please enter your name and email!");
         return;
     }
 
-    // فتح نافذة جديدة في المتصفح لبناء الـ CV بداخلها وتجنب تشويه تصميم الموقع الأساسي
+    // قاموس الترجمة الفورية للعناوين الداخلية للـ CV بناءً على اللغة المختارة
+    const dict = {
+        ar: { contact: "معلومات الاتصال", skills: "المهارات المهنية", exp: "الخبرة العمليّة والتعليم", noExp: "لا توجد خبرات مضافة." },
+        en: { contact: "Contact Information", skills: "Professional Skills", exp: "Work Experience & Education", noExp: "No experience provided." },
+        de: { contact: "Kontaktinformationen", skills: "Berufliche Fähigkeiten", exp: "Berufserfahrung & Ausbildung", noExp: "Keine Berufserfahrung angegeben." },
+        fr: { contact: "Coordonnées", skills: "Compétences Professionnelles", exp: "Expérience Professionnelle & Éducation", noExp: "Aucune expérience fournie." },
+        ru: { contact: "Контактная информация", skills: "Профессиональные навыки", exp: "Опыт работы и образование", noExp: "Опыт работы не указан." },
+        it: { contact: "Informazioni di contatto", skills: "Competenze Professionali", exp: "Esperienza Lavorativa e Istruzione", noExp: "Nessuna esperienza fornita." },
+        es: { contact: "Información de contacto", skills: "Habilidades Profesionales", exp: "Experiencia Laboral y Educación", noExp: "No se proporcionó experiencia." },
+        fa: { contact: "اطلاعات تماس", skills: "مهارت های حرفه ای", exp: "سابقه کار و تحصیلات", noExp: "هیچ سابقه ای ثبت نشده است." },
+        ku: { contact: "Agahiyên Têkiliyê", skills: "Kêmasiyên Profesyonel", exp: "Ezmûna Kar & Perwerdehiyê", noExp: "Tu ezmûn nehatiye peyda kirin." }
+    };
+
+    // تحديد اتجاه الصفحة (يمين ليدعم العربية والفارسية، ويسار لباقي اللغات العالمية)
+    const direction = (cvLang === 'ar' || cvLang === 'fa') ? 'rtl' : 'ltr';
+
     const cvWindow = window.open('', '_blank');
     
-    // بناء هويّة وتصميم الـ CV الأنيق والأبيض المخصص للطباعة الرسمية
+    // بناء مستند بتصميم أوروبي فائق الاحترافية (Minimalistic Euro-Style)
     cvWindow.document.write(`
-        <html lang="${currentLanguage}" dir="${currentLanguage === 'ar' ? 'rtl' : 'ltr'}">
+        <html lang="${cvLang}" dir="${direction}">
         <head>
             <meta charset="UTF-8">
             <title>CV - ${name}</title>
             <style>
-                body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; color: #333; background: #fff; line-height: 1.6; }
-                .header { text-align: center; border-bottom: 3px solid #38bdf8; padding-bottom: 20px; margin-bottom: 30px; }
-                .header h1 { margin: 0; color: #0f172a; font-size: 28px; }
-                .header p { margin: 5px 0 0 0; color: #475569; font-size: 16px; }
-                .section { margin-bottom: 25px; }
-                .section-title { font-size: 18px; color: #0f172a; border-bottom: 1px solid #cbd5e1; padding-bottom: 5px; margin-bottom: 10px; font-weight: bold; }
+                body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 50px; color: #1e293b; background: #fff; line-height: 1.5; }
+                .cv-container { max-width: 800px; margin: 0 auto; }
+                .header { border-bottom: 2px solid #0f172a; padding-bottom: 15px; margin-bottom: 25px; }
+                .header h1 { margin: 0; color: #0f172a; font-size: 32px; font-weight: 700; letter-spacing: -0.5px; }
+                .header h2 { margin: 5px 0 0 0; color: #475569; font-size: 18px; font-weight: 400; }
+                .info-grid { display: flex; gap: 20px; margin-top: 10px; font-size: 14px; color: #64748b; }
+                .section { display: flex; margin-bottom: 30px; gap: 15px; }
+                .section-side { width: 25%; font-size: 14px; font-weight: 700; color: #0f172a; text-transform: uppercase; letter-spacing: 0.5px; border-top: 1px solid #e2e8f0; padding-top: 8px; }
+                .section-body { width: 75%; border-top: 1px solid #e2e8f0; padding-top: 8px; }
                 .content { font-size: 14px; color: #334155; white-space: pre-wrap; }
-                .skills-list { display: flex; gap: 10px; flex-wrap: wrap; list-style: none; padding: 0; }
-                .skills-list li { background: #f1f5f9; padding: 5px 12px; border-radius: 4px; font-size: 13px; border: 1px solid #e2e8f0; }
-                @media print { button { display: none; } }
+                .skills-tags { display: flex; gap: 8px; flex-wrap: wrap; list-style: none; padding: 0; margin: 0; }
+                .skills-tags li { background: #f8fafc; padding: 4px 10px; border-radius: 4px; font-size: 13px; border: 1px solid #e2e8f0; color: #334155; font-weight: 500; }
+                @media print { body { padding: 20px; } .cv-container { max-width: 100%; } }
             </style>
         </head>
         <body>
-            <div class="header">
-                <h1>${name}</h1>
-                <p>${email}</p>
-            </div>
-            
-            <div class="section">
-                <div class="section-title">${currentLanguage === 'ar' ? '📌 نبذة عني والخبرات المهنية' : '📌 Professional Experience & Summary'}</div>
-                <div class="content">${exp !== "" ? exp : (currentLanguage === 'ar' ? 'لا توجد خبرات مضافة.' : 'No experience provided.')}</div>
-            </div>
-            
-            <div class="section">
-                <div class="section-title">${currentLanguage === 'ar' ? '🛠️ المهارات الأساسية' : '🛠️ Core Skills'}</div>
-                <ul class="skills-list">
-                    ${skills !== "" ? skills.split(',').map(s => `<li>${s.trim()}</li>`).join('') : `<li>${currentLanguage === 'ar' ? 'مهارات عامة' : 'General Skills'}</li>`}
-                </ul>
+            <div class="cv-container">
+                <div class="header">
+                    <h1>${name}</h1>
+                    ${jobTitle !== "" ? `<h2>${jobTitle}</h2>` : ''}
+                    <div class="info-grid">
+                        <div>✉ ${email}</div>
+                        ${phone !== "" ? `<div>📞 ${phone}</div>` : ''}
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-side">${dict[cvLang].exp}</div>
+                    <div class="section-body">
+                        <div class="content">${exp !== "" ? exp : dict[cvLang].noExp}</div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-side">${dict[cvLang].skills}</div>
+                    <div class="section-body">
+                        <ul class="skills-tags">
+                            ${skills !== "" ? skills.split(',').map(s => `<li>${s.trim()}</li>`).join('') : `<li>CV Tool</li>`}
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <script>
-                // استدعاء أمر الطباعة التلقائي فور تحميل الصفحة لتمكين الحفظ كـ PDF
                 window.onload = function() {
                     window.print();
                 }
