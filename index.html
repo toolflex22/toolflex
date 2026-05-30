@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    <!-- وسوم التهيئة الأساسية للمتصفح (يجب أن تكون في البداية) -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToolFlex | أدوات مجانية لصناع المحتوى</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- وسوم السيو الأساسية (SEO Meta Tags) -->
     <meta name="description" content="منصة ToolFlex المجانية - ترسانة رقمية متكاملة تحتوي على 12 أداة برمجية ذكية: مترجم فوري، محول عملات، منشئ سيرة ذاتية PDF، ضاغط صور، ومولد كلمات مرور.">
     <meta name="keywords" content="أدوات مجانية, مترجم نصوص, محول عملات, سيرة ذاتية PDF, ضغط الصور, QR Code, واتساب مباشر, ToolFlex">
     <meta name="author" content="ToolFlex Team">
     <meta name="robots" content="index, follow">
 
+    <!-- وسوم الشبكات الاجتماعية (Open Graph / Facebook / WhatsApp) -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="ToolFlex - منصة الأدوات الرقمية المتكاملة">
     <meta property="og:description" content="أنجز مهامك اليومية بضغطة زر واحدة مع 12 أداة احترافية ومجانية بالكامل محلياً وسريعاً.">
     <meta property="og:image" content="https://dummyimage.com/1200x630/0f172a/38bdf8.png&text=ToolFlex+-+12+Digital+Tools">
 
+    <!-- وسوم منصة إكس (Twitter Meta Tags) -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ToolFlex - منصة الأدوات الرقمية المتكاملة">
     <meta name="twitter:description" content="12 أداة احترافية مجانية بالكامل في منصة واحدة سريعة وآمنة.">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToolFlex | أدوات مجانية لصناع المحتوى</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -31,7 +36,8 @@
         </div>
     </header>
 
-    <div class="ad-wrapper">
+    <!-- المساحة الإعلانية العلوية المجهزة (728x90 Banner) -->
+    <div class="ad-wrapper" style="text-align: center; margin: 20px 0; min-height: 90px;">
         <script>
             atOptions = {
               'key' : 'a13835289707b58ec3e62970d8b08e7f',
@@ -52,171 +58,184 @@
     <main class="main-container">
         <div class="tools-grid">
             
+            <!-- كرت الأداة 1: عداد الكلمات -->
             <div class="tool-card">
                 <h3 id="tool1-title">📊 عداد الكلمات والحروف</h3>
                 <p id="tool1-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">احسب عدد الكلمات والحروف في نصك فوراً.</p>
-                
                 <textarea id="text-input" oninput="countText()" placeholder="اكتب أو الصق نصك هنا..."></textarea>
-                
                 <div class="results-box">
                     <span id="label-words">الكلمات:</span> <strong id="word-count">0</strong> | 
                     <span id="label-chars">الحروف:</span> <strong id="char-count">0</strong>
                 </div>
             </div>
 
+            <!-- كرت الأداة 2: مولد الوسوم -->
             <div class="tool-card">
                 <h3 id="tool2-title">📱 مولد وسوم (Hashtags) السوشيال ميديا</h3>
                 <p id="tool2-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">ولّد وسومًا دلالية وقوية لمنشوراتك بضغطة زر لزيادة التفاعل.</p>
-                
                 <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                     <input type="text" id="hashtag-keyword" placeholder="أدخل الكلمة المفتاحية (مثال: fitness)..." style="flex: 1; padding: 10px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; box-sizing: border-box;">
                     <button id="hashtag-btn" onclick="generateTags()" style="background-color: #38bdf8; color: #0f172a; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer;">توليد</button>
                 </div>
-                
                 <div class="results-box" style="position: relative;">
                     <div id="hashtag-output" style="color: #94a3b8; font-size: 0.95rem; min-height: 40px; word-break: break-all;">الوسوم المرتجعة ستظهر هنا...</div>
                     <button id="copy-tags-btn" onclick="copyTags()" style="display: none; margin-top: 10px; background-color: #475569; color: #f8fafc; border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">نسخ الكل</button>
                 </div>
             </div>
-            <!-- كرت الأداة الثالثة: منظف النصوص -->
+
+            <!-- كرت الأداة 3: منظف النصوص -->
             <div class="tool-card">
                 <h3 id="tool3-title">🧹 منظف النصوص الذكي</h3>
                 <p id="tool3-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">قم بإزالة الفراغات الزائدة والأسطر الفارغة لتنظيف نصوصك ومقالاتك فوراً.</p>
-                
-                <textarea id="cleaner-input" placeholder="أدخل أو الصق النص المراد تنظيفه هنا..." style="width: 100%; height: 100px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; padding: 10px; box-sizing: border-box; resize: vertical; margin-bottom: 10px;"></textarea>
-                
+                <textarea id="cleaner-input" placeholder="أدخل أو الصق النص المراد تنظيفه هنا..." style="width: 100%; height: 100px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; padding: 10px; box-sizing: border-box; resize: vertical; margin-bottom: 10px Papas;"></textarea>
                 <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
                     <button id="clean-spaces-btn" onclick="cleanText('spaces')" style="flex: 1; background-color: #38bdf8; color: #0f172a; border: none; padding: 8px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.85rem;">إزالة الفراغات</button>
                     <button id="clean-lines-btn" onclick="cleanText('lines')" style="flex: 1; background-color: #38bdf8; color: #0f172a; border: none; padding: 8px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.85rem;">إزالة الأسطر الفارغة</button>
                 </div>
-                
                 <div class="results-box" style="position: relative;">
                     <div id="cleaner-output" style="color: #94a3b8; font-size: 0.95rem; min-height: 40px; word-break: break-all; white-space: pre-wrap;">النص المنظف سيظهر هنا...</div>
                     <button id="copy-clean-btn" onclick="copyCleanedText()" style="display: none; margin-top: 10px; background-color: #475569; color: #f8fafc; border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">نسخ النص</button>
                 </div>
             </div>
-            <div class="tool-card">
-                <h3 id="tool4-title">🔒 مولد كلمات المرور القوية</h3>
-                <p id="tool4-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">أنشئ كلمات مرور عشوائية ومستحيلة التخمين لحماية حساباتك فوراً.</p>
-                
-                <div style="background-color: #687382; padding: 12px; border-radius: 8px; border: 1px solid #334155; margin-bottom: 15px; font-size: 0.9rem;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; align-items: center;">
-                        <span id="label-pass-length">طول كلمة المرور:</span>
-                        <input type="number" id="pass-length" value="12" min="6" max="32" style="width: 50px; padding: 5px; background: #1e293b; color: #f8fafc; border: 1px solid #334155; border-radius: 4px; text-align: center;">
-                    </div>
-                    <label style="display: block; margin-bottom: 8px; cursor: pointer;">
-                        <input type="checkbox" id="pass-numbers" checked> <span id="label-pass-num">تضمين أرقام (0-9)</span>
-                    </label>
-                    <label style="display: block; margin-bottom: 8px; cursor: pointer;">
-                        <input type="checkbox" id="pass-symbols" checked> <span id="label-pass-sym">تضمين رموز (!@#$)</span>
-                    </label>
-                    <label style="display: block; cursor: pointer;">
-                        <input type="checkbox" id="pass-uppercase" checked> <span id="label-pass-upper">تضمين حروف كبيرة (A-Z)</span>
-                    </label>
-                </div>
 
-                <button id="generate-pass-btn" onclick="generatePassword()" style="width: 100%; background-color: #38bdf8; color: #4e576b; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 15px;">توليد كلمة المرور</button>
-                
-                <div class="results-box" style="position: relative;">
-                    <div id="password-output" style="color: #94a3b8; font-size: 1rem; min-height: 35px; word-break: break-all; font-family: monospace; letter-spacing: 1px;">كلمة المرور ستظهر هنا...</div>
-                    <button id="copy-pass-btn" onclick="copyPassword()" style="display: none; margin-top: 10px; background-color: #475569; color: #f8fafc; border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">نسخ الباسورد</button>
+            <!-- كرت الأداة 4: مولد كلمات المرور -->
+            <div class="tool-card">
+                <div>
+                    <h3 id="tool4-title">🔒 مولد كلمات المرور القوية</h3>
+                    <p id="tool4-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">أنشئ كلمات مرور عشوائية ومستحيلة التخمين لحماية حساباتك فوراً.</p>
+                    
+                    <div class="password-settings-box">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; align-items: center;">
+                            <span id="label-pass-length">طول كلمة المرور:</span>
+                            <input type="number" id="pass-length" value="12" min="6" max="32" style="width: 60px; padding: 5px; text-align: center; border-radius: 6px;">
+                        </div>
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="checkbox" id="pass-numbers" checked> <span id="label-pass-num">تضمين أرقام (0-9)</span>
+                        </label>
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="checkbox" id="pass-symbols" checked> <span id="label-pass-sym">تضمين رموز (!@#$)</span>
+                        </label>
+                        <label style="display: block; cursor: pointer;">
+                            <input type="checkbox" id="pass-uppercase" checked> <span id="label-pass-upper">تضمين حروف كبيرة (A-Z)</span>
+                        </label>
+                    </div>
+                </div>
+            
+                <div>
+                    <button id="generate-pass-btn" onclick="generatePassword()" style="width: 100%; background-color: #38bdf8; color: #0f172a; border: none; padding: 11px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 15px; transition: background 0.2s;">توليد كلمة المرور</button>
+                    
+                    <div class="results-box" style="position: relative;">
+                        <div id="password-output" style="font-size: 1.1rem; min-height: 35px; word-break: break-all; font-family: monospace; letter-spacing: 1px;">كلمة المرور ستظهر هنا...</div>
+                        <button id="copy-pass-btn" onclick="copyPassword()" style="display: none; margin-top: 10px; background-color: #475569; color: #f8fafc; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; transition: background 0.2s;">نسخ الباسورد</button>
+                    </div>
                 </div>
             </div>
-            <div class="ad-container" style="text-align: center; margin-top: 30px; min-height: 90px;">
-                <script async="async" data-cfasync="false" src="https://pl29593195.effectivecpmnetwork.com/37a3690a50a9b19288221e24c6473f0b/invoke.js"></script>
-                <div id="container-37a3690a50a9b19288221e24c6473f0b"></div>                
+
+            <!-- 🔥 كرت إعلاني مدمج ذكي (تم نقله ليصبح متناسقاً بداخل الـ grid تماماً) -->
+            <div class="tool-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: transparent; border: 1px dashed #334155; min-height: 120px;">
+                <script>
+                    atOptions = {
+                      'key' : '0acfcb3cab1b9a6482f8007dae3b2618',
+                      'format' : 'iframe',
+                      'height' : 50,
+                      'width' : 320,
+                      'params' : {}
+                    };
+                </script>
+                <script src="https://www.highperformanceformat.com/0acfcb3cab1b9a6482f8007dae3b2618/invoke.js"></script>                  
             </div>
+
+            <!-- مساحة إعلانية للـ Native Banner أو الكود الخاص بك (تم تنسيقها ككرت) -->
+            <div class="tool-card" style="text-align: center; display: flex; align-items: center; justify-content: center; min-height: 120px; background: transparent; border: 1px dashed #334155;">
+                <script async="async" data-cfasync="false" src="https://pl29593195.effectivecpmnetwork.com/37a3690a50a9b19288221e24c6473f0b/invoke.js"></script>
+                <div id="container-37a3690a50a9b19288221e24c6473f0b" style="width:100%;"></div>                
+            </div>
+
+            <!-- كرت الأداة 5: محول حالة الأحرف -->
             <div class="tool-card">
                 <h3 id="tool5-title">🔠 محول حالة الأحرف الإنجليزية</h3>
                 <p id="tool5-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">حوّل النصوص الإنجليزية إلى حروف كبيرة، صغيرة، أو عناوين بضغطة زر.</p>
-                
                 <textarea id="case-input" placeholder="Enter your English text here / أدخل النص الإنجليزي هنا..." style="width: 100%; height: 90px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; padding: 10px; box-sizing: border-box; resize: vertical; margin-bottom: 10px;"></textarea>
-                
                 <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap;">
                     <button id="case-upper-btn" onclick="convertCase('upper')" style="flex: 1; background-color: #38bdf8; color: #0f172a; border: none; padding: 8px 5px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.8rem;">كبيرة UPPER</button>
                     <button id="case-lower-btn" onclick="convertCase('lower')" style="flex: 1; background-color: #38bdf8; color: #0f172a; border: none; padding: 8px 5px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.8rem;">صغيرة lower</button>
                     <button id="case-cap-btn" onclick="convertCase('capitalize')" style="flex: 1; background-color: #38bdf8; color: #0f172a; border: none; padding: 8px 5px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.8rem;">عنوان Title</button>
                 </div>
-                
                 <div class="results-box" style="position: relative;">
                     <div id="case-output" style="color: #94a3b8; font-size: 0.95rem; min-height: 35px; word-break: break-all; white-space: pre-wrap;">النتيجة ستظهر هنا...</div>
                     <button id="copy-case-btn" onclick="copyCaseText()" style="display: none; margin-top: 10px; background-color: #475569; color: #f8fafc; border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">نسخ النتيجة</button>
                 </div>
             </div>
+
+            <!-- كرت الأداة 6: مستخرج الأرقام -->
             <div class="tool-card">
                 <h3 id="tool6-title">🔢 مستخرج الأرقام الذكي</h3>
                 <p id="tool6-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">استخرج جميع الأرقام المتواجدة داخل أي نص ضخم وافصل بينها بضغطة زر واحدة.</p>
-                
                 <textarea id="extract-input" placeholder="أدخل أو الصق النص المختلط هنا (مثال: أحمد 25 سنة وراتبه 1500)..." style="width: 100%; height: 90px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; padding: 10px; box-sizing: border-box; resize: vertical; margin-bottom: 10px;"></textarea>
-                
                 <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                     <button id="extract-space-btn" onclick="extractNumbers('space')" style="flex: 1; background-color: #38bdf8; color: #0f172a; border: none; padding: 9px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.85rem;">فصل بمسافة</button>
                     <button id="extract-comma-btn" onclick="extractNumbers('comma')" style="flex: 1; background-color: #38bdf8; color: #0f172a; border: none; padding: 9px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.85rem;">فصل بفاصلة (،)</button>
                 </div>
-                
                 <div class="results-box" style="position: relative;">
                     <div id="extract-output" style="color: #94a3b8; font-size: 0.95rem; min-height: 35px; word-break: break-all;">الأرقام المستخرجة ستظهر هنا...</div>
                     <button id="copy-extract-btn" onclick="copyExtractedNumbers()" style="display: none; margin-top: 10px; background-color: #475569; color: #f8fafc; border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">نسخ الأرقام</button>
                 </div>
             </div>
+
+            <!-- كرت الأداة 7: روابط واتساب -->
             <div class="tool-card">
                 <h3 id="tool7-title">🟢 مولد روابط واتساب المباشرة</h3>
                 <p id="tool7-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">حوّل رقم هاتفك إلى رابط مباشر مع رسالة مجهزة مسبقاً لعملائك بضغطة زر.</p>
-                
                 <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px;">
                     <input type="tel" id="wa-phone" placeholder="رقم الهاتف مع رمز الدولة (مثال: 966500000000)..." style="width: 100%; padding: 10px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; box-sizing: border-box;">
                     <textarea id="wa-message" placeholder="الرسالة التلقائية الاختيارية (مثال: أهلاً، أريد الاستفسار عن خدماتكم)..." style="width: 100%; height: 60px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; padding: 10px; box-sizing: border-box; resize: none;"></textarea>
                 </div>
-                
                 <button id="wa-btn" onclick="generateWhatsAppLink()" style="width: 100%; background-color: #22c55e; color: #ffffff; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 15px;">توليد الرابط المباشر</button>
-                
                 <div class="results-box" style="position: relative;">
                     <div id="wa-output" style="color: #94a3b8; font-size: 0.9rem; min-height: 35px; word-break: break-all;">الرابط السحري سيظهر هنا...</div>
                     <button id="copy-wa-btn" onclick="copyWhatsAppLink()" style="display: none; margin-top: 10px; background-color: #475569; color: #f8fafc; border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">نسخ الرابط</button>
                 </div>
             </div>
+
+            <!-- كرت الأداة 8: منشئ كود QR -->
             <div class="tool-card">
                 <h3 id="tool8-title">📱 منشئ أكواد الاستجابة السريعة (QR)</h3>
                 <p id="tool8-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">حوّل أي رابط أو نص إلى كود QR فريد بلمحة بصر لمشاركته وطباعته.</p>
-                
                 <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                     <input type="text" id="qr-input" placeholder="أدخل الرابط أو النص هنا (مثال: https://...)..." style="flex: 1; padding: 10px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; box-sizing: border-box;">
                     <button id="qr-btn" onclick="generateQRCode()" style="background-color: #38bdf8; color: #0f172a; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer;">توليد</button>
                 </div>
-                
                 <div class="results-box" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100px;">
                     <div id="qr-output" style="color: #94a3b8; font-size: 0.95rem;">الكود المولد سيظهر هنا...</div>
                     <a id="download-qr-btn" href="#" download="QRCode.png" style="display: none; margin-top: 15px; background-color: #475569; color: #f8fafc; text-decoration: none; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; cursor: pointer;">تحميل الكود كصورة</a>
                 </div>
             </div>
+
+            <!-- كرت الأداة 9: ضاغط الصور -->
             <div class="tool-card">
                 <h3 id="tool9-title">🖼️ أداة ضغط وتقليل حجم الصور</h3>
                 <p id="tool9-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">قم بتخفيض حجم صورك بذكاء وبسرعة فائقة دون المساس بجودتها الأصلية.</p>
-                
                 <div style="background-color: #0f172a; padding: 12px; border-radius: 8px; border: 1px solid #334155; margin-bottom: 15px; font-size: 0.9rem;">
                     <input type="file" id="image-input" accept="image/*" style="width: 100%; color: #94a3b8; font-size: 0.85rem; margin-bottom: 10px; cursor: pointer;">
-                    
                     <div style="display: flex; justify-content: space-between; margin-bottom: 5px; align-items: center;">
-                        <span id="label-compress-quality">جودة الضغط (70% ممتع):</span>
+                        <span id="label-compress-quality">جودة الضغط:</span>
                         <span id="quality-value" style="font-weight: bold; color: #38bdf8;">70%</span>
                     </div>
                     <input type="range" id="image-quality" min="10" max="100" value="70" oninput="document.getElementById('quality-value').innerText = this.value + '%'" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
                 </div>
-
                 <button id="compress-btn" onclick="compressImage()" style="width: 100%; background-color: #38bdf8; color: #0f172a; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 15px;">اضغط الصورة الآن</button>
-                
                 <div class="results-box" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50px;">
                     <div id="compress-output" style="color: #94a3b8; font-size: 0.95rem;">الصورة المضغوطة ستظهر هنا...</div>
                     <a id="download-img-btn" href="#" download="compressed_image.jpg" style="display: none; margin-top: 15px; background-color: #22c55e; color: #ffffff; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; cursor: pointer;">تحميل الصورة المضغوطة ✓</a>
                 </div>
             </div>
+
+            <!-- كرت الأداة 10: محول العملات -->
             <div class="tool-card">
                 <h3 id="tool10-title">💱 محول العملات والعملات الرقمية الفوري</h3>
                 <p id="tool10-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">تابع أسعار الصرف الحية وحوّل بين العملات العالمية والرقيمة فوراً.</p>
-                
                 <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px;">
                     <input type="number" id="currency-amount" value="1" min="1" style="width: 100%; padding: 10px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; box-sizing: border-box; text-align: center;">
-                    
                     <div style="display: flex; gap: 10px;">
                         <select id="currency-from" style="flex: 1; padding: 10px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px;">
                             <option value="USD">USD - دولار أمريكي</option>
@@ -233,19 +252,17 @@
                         </select>
                     </div>
                 </div>
-
                 <button id="convert-currency-btn" onclick="convertCurrency()" style="width: 100%; background-color: #38bdf8; color: #0f172a; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 15px;">احسب السعر الحي الآن</button>
-                
                 <div class="results-box" style="text-align: center;">
                     <div id="currency-output" style="color: #38bdf8; font-size: 1.2rem; font-weight: bold; min-height: 35px;">النتيجة الحية ستظهر هنا...</div>
                 </div>
             </div>
+
+            <!-- كرت الأداة 11: المترجم الفوري -->
             <div class="tool-card">
                 <h3 id="tool11-title">🌐 مترجم النصوص الفوري السريع</h3>
                 <p id="tool11-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">ترجم نصوصك فوراً بين اللغتين العربية والإنجليزية بدقة وسرعة فائقة.</p>
-                
                 <textarea id="translate-input" placeholder="أدخل النص المراد ترجمته هنا..." style="width: 100%; height: 80px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; padding: 10px; box-sizing: border-box; resize: vertical; margin-bottom: 10px;"></textarea>
-                
                 <div style="display: flex; gap: 10px; margin-bottom: 15px; align-items: center;">
                     <span id="label-translate-to" style="font-size: 0.9rem;">الترجمة إلى:</span>
                     <select id="translate-lang" style="flex: 1; padding: 8px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px;">
@@ -256,22 +273,21 @@
                         <option value="de">Deutsch (الألمانية)</option>
                         <option value="it">Italiano (الإيطالية)</option>
                         <option value="es">Español (الإسبانية)</option>
-                        <option value="fa">فارسی (الفارسية/الإيرانية)</option>
+                        <option value="fa">فارسی (الفارسية)</option>
                         <option value="ku">Kurdî (الكردية)</option>
                     </select>
                 </div>
-
                 <button id="translate-btn" onclick="translateText()" style="width: 100%; background-color: #38bdf8; color: #0f172a; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 15px;">ترجم النص الآن</button>
-                
                 <div class="results-box" style="position: relative;">
                     <div id="translate-output" style="color: #94a3b8; font-size: 0.95rem; min-height: 35px; white-space: pre-wrap;">النص المترجم سيظهر هنا...</div>
                     <button id="copy-translate-btn" onclick="copyTranslatedText()" style="display: none; margin-top: 10px; background-color: #475569; color: #f8fafc; border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">نسخ الترجمة</button>
                 </div>
             </div>
+
+            <!-- كرت الأداة 12: منشئ الـ CV -->
             <div class="tool-card">
                 <h3 id="tool12-title">📄 منشئ السيرة الذاتية السريع (CV)</h3>
                 <p id="tool12-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">أنشئ سيرة ذاتية احترافية ومبسطة جاهزة للطباعة والتحميل كملف PDF فوراً.</p>
-                
                 <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px;">
                     <div style="display: flex; gap: 10px; align-items: center; background-color: #0f172a; padding: 6px 10px; border-radius: 8px; border: 1px solid #334155;">
                         <span id="cv-lang-label" style="font-size: 0.85rem; color: #94a3b8;">لغة الـ CV:</span>
@@ -287,7 +303,6 @@
                             <option value="ku">Kurdî (الكردية)</option>
                         </select>
                     </div>
-
                     <input type="text" id="cv-name" placeholder="الاسم الكامل..." style="width: 100%; padding: 8px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; box-sizing: border-box;">
                     <input type="text" id="cv-title" placeholder="المسمى الوظيفي (مثال: مطور ويب)..." style="width: 100%; padding: 8px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; box-sizing: border-box;">
                     <input type="email" id="cv-email" placeholder="البريد الإلكتروني..." style="width: 100%; padding: 8px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; box-sizing: border-box;">
@@ -295,25 +310,11 @@
                     <input type="text" id="cv-skills" placeholder="المهارات (افصل بينها بفاصلة)..." style="width: 100%; padding: 8px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; box-sizing: border-box;">
                     <textarea id="cv-experience" placeholder="الخبرات المهنية والتعليم..." style="width: 100%; height: 60px; background-color: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; padding: 8px; box-sizing: border-box; resize: none;"></textarea>
                 </div>
-
                 <button id="cv-btn" onclick="generateCV()" style="width: 100%; background-color: #38bdf8; color: #0f172a; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer;">توليد وتحميل الـ CV كـ PDF</button>
             </div>
 
         </div>
     </main>
-            <!-- كرت إعلاني مدمج وسط شبكة الأدوات -->
-            <div class="tool-card" style="display: flex; justify-content: center; align-items: center; background: transparent; border: 1px dashed #334155; min-height: 250px;">
-                <script>
-                    atOptions = {
-                      'key' : '0acfcb3cab1b9a6482f8007dae3b2618',
-                      'format' : 'iframe',
-                      'height' : 50,
-                      'width' : 320,
-                      'params' : {}
-                    };
-                  </script>
-                  <script src="https://www.highperformanceformat.com/0acfcb3cab1b9a6482f8007dae3b2618/invoke.js"></script>                  
-            </div>
 
     <footer>
         <div class="footer-container">
@@ -325,6 +326,7 @@
         </div>
     </footer>
 
+    <!-- المودال الخاص بسياسة الخصوصية -->
     <div id="privacy-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('privacy-modal')">&times;</span>
@@ -336,6 +338,7 @@
         </div>
     </div>
 
+    <!-- المودال الخاص بشروط الاستخدام -->
     <div id="terms-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('terms-modal')">&times;</span>

@@ -1,10 +1,13 @@
-/* التنسيق العام والأساسي */
-body {
+/* ==========================================================================
+   1. التنسيق العام والأساسي
+   ========================================================================== */
+   body {
     background-color: #0f172a;
     color: #f8fafc;
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* تنسيق الهيدر */
@@ -12,6 +15,7 @@ header {
     background-color: #1e293b;
     padding: 15px 20px;
     border-bottom: 1px solid #334155;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .header-container {
@@ -36,14 +40,16 @@ header {
     border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background-color 0.2s ease;
 }
 
 #lang-btn:hover {
     background-color: #7dd3fc;
 }
 
-/* التنسيق الآمن والمستقر للحاوية الإعلانية */
+/* ==========================================================================
+   2. الحاويات الإعلانية والهيرو
+   ========================================================================== */
 .ad-wrapper {
     text-align: center;
     margin: 25px auto;
@@ -58,7 +64,6 @@ header {
     max-width: 100%;
 }
 
-/* تنسيق منطقة الترحيب */
 .hero {
     text-align: center;
     padding: 40px 20px;
@@ -74,7 +79,9 @@ header {
     margin: 0;
 }
 
-/* تنسيق الحاوية الرئيسية للأدوات */
+/* ==========================================================================
+   3. حاوية الأدوات والشبكة (Grid)
+   ========================================================================== */
 .main-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -87,7 +94,7 @@ header {
     gap: 20px;
 }
 
-/* تنسيق كروت الأدوات المشترك */
+/* كروت الأدوات */
 .tool-card {
     background-color: #1e293b;
     border: 1px solid #334155;
@@ -96,18 +103,40 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-textarea {
+/* تخصيص العناصر داخل الكروت لضمان التجاوب */
+.tool-card h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+/* عناصر الإدخال والتحكم */
+textarea, input[type="text"], input[type="number"], input[type="tel"], input[type="email"], select {
     width: 100%;
-    height: 120px;
     background-color: #0f172a;
     color: #f8fafc;
     border: 1px solid #334155;
     border-radius: 8px;
     padding: 12px;
     box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+textarea {
+    height: 120px;
     resize: vertical;
+}
+
+/* صندوق التحكم الخاص بأداة كلمة المرور لضمان ثباته في الفاتح والداكن */
+.password-settings-box {
+    background-color: #334155;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #475569;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
 }
 
 .results-box {
@@ -117,9 +146,12 @@ textarea {
     border-radius: 8px;
     border: 1px dashed #38bdf8;
     font-size: 1.1rem;
+    word-break: break-word;
 }
 
-/* تنسيق الفوتر (تذييل الصفحة) */
+/* ==========================================================================
+   4. الفوتر والنوافذ المنبثقة (Modals)
+   ========================================================================== */
 footer {
     background-color: #1e293b;
     padding: 20px;
@@ -128,6 +160,7 @@ footer {
     text-align: center;
     font-size: 0.9rem;
     color: #94a3b8;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .footer-links a {
@@ -140,7 +173,6 @@ footer {
     text-decoration: underline;
 }
 
-/* تنسيق النوافذ المنبثقة القانونية (Modals) */
 .modal {
     display: none;
     position: fixed;
@@ -163,14 +195,13 @@ footer {
     border-radius: 12px;
     position: relative;
     color: #f8fafc;
-    text-align: right; /* افتراضي للغة العربية */
+    text-align: right;
 }
 
-/* زر إغلاق النافذة X */
 .close-btn {
     position: absolute;
     top: 15px;
-    left: 20px; /* يسار في الواجهة العربية */
+    left: 20px;
     color: #94a3b8;
     font-size: 28px;
     font-weight: bold;
@@ -181,7 +212,6 @@ footer {
     color: #38bdf8;
 }
 
-/* تعديل الاتجاهات للنافذة تلقائياً عند قلب اللغة للإنجليزية */
 html[dir="ltr"] .modal-content {
     text-align: left;
 }
@@ -190,63 +220,114 @@ html[dir="ltr"] .close-btn {
     left: auto;
     right: 20px;
 }
-/* تحسين استجابة أزرار الأدوات على الشاشات الصغيرة */
-@media (max-width: 480px) {
-    .tool-card button {
-        width: 100%;
-        font-size: 0.8rem;
-    }
-}
-/* تحسين مظهر مربعات الاختيار في الأدوات */
+
+/* ==========================================================================
+   5. تحسينات التجاوب وإمكانية الوصول
+   ========================================================================== */
 .tool-card input[type="checkbox"] {
-    accent-color: #38bdf8; /* تلوين مربع الاختيار باللون الأزرق المميز للموقع */
+    accent-color: #38bdf8;
     margin-left: 8px;
     vertical-align: middle;
 }
+
 html[dir="ltr"] .tool-card input[type="checkbox"] {
     margin-left: 0;
     margin-right: 8px;
 }
-/* تخصيص ألوان الوضع الفاتح */
-body.light-theme {
-    background-color: #f1f5f9; /* خلفية رمادية فاتحة ومريحة للعين */
-    color: #0f172a; /* نصوص داكنة */
+
+@media (max-width: 480px) {
+    .tool-card button {
+        width: 100%;
+        font-size: 0.85rem;
+    }
+    
+    /* جعل الحقول المصطفة أفقياً تنزل لسطر جديد في الشاشات الصغيرة جداً */
+    .tool-card div[style*="display: flex"] {
+        flex-direction: column !important;
+    }
+    
+    .tool-card div[style*="display: flex"] button,
+    .tool-card div[style*="display: flex"] input {
+        width: 100% !important;
+    }
 }
 
-body.light-theme header h1 {
+/* ==========================================================================
+   6. ألوان وهندسة الوضع الفاتح (Light Theme)
+   ========================================================================== */
+body.light-theme {
+    background-color: #f1f5f9;
     color: #0f172a;
 }
 
-body.light-theme .tool-card {
-    background-color: #ffffff; /* كروت الأدوات تصبح بيضاء ناصعة */
-    border-color: #cbd5e1; /* حدود رمادية خفيفة */
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05); /* ظل ناعم للحس الجمالي */
+body.light-theme header {
+    background-color: #ffffff;
+    border-color: #cbd5e1;
+}
+
+body.light-theme .hero h1 {
+    color: #0284c7;
+}
+
+body.light-theme .hero p {
+    color: #475569;
+}
+
+/* تطبيق التغيير على كروت الأدوات الحقيقية فقط واستثناء كروت الإعلانات الشفافة */
+body.light-theme .tool-card:not([style*="background: transparent"]):not([style*="background:transparent"]) {
+    background-color: #ffffff;
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
 }
 
 body.light-theme .tool-card h3 {
-    color: #0f172a; /* عناوين الأدوات داكنة */
+    color: #0f172a;
 }
 
 body.light-theme .tool-card p {
-    color: #475569 !important; /* وصف الأدوات رمادي غامق وواضح */
+    color: #475569 !important;
 }
 
 body.light-theme input, 
 body.light-theme textarea, 
 body.light-theme select {
-    background-color: #f8fafc !important; /* حقول الإدخال تصبح فاتحة */
-    color: #0f172a !important; /* نصوص الحقول داكنة */
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
     border-color: #cbd5e1 !important;
 }
 
+body.light-theme .password-settings-box {
+    background-color: #e2e8f0;
+    border-color: #cbd5e1;
+    color: #0f172a;
+}
+
 body.light-theme .results-box {
-    background-color: #f8fafc !important; /* صناديق النتائج الفورية */
+    background-color: #f8fafc !important;
     border-color: #cbd5e1 !important;
+    color: #0f172a;
 }
 
 body.light-theme #wa-output,
 body.light-theme #qr-output,
 body.light-theme #compress-output,
-body.light-theme #translate-output {
+body.light-theme #translate-output,
+body.light-theme #cleaner-output,
+body.light-theme #password-output,
+body.light-theme #hashtag-output,
+body.light-theme #extract-output,
+body.light-theme #case-output {
     color: #334155 !important;
+}
+
+body.light-theme footer {
+    background-color: #ffffff;
+    border-color: #cbd5e1;
+    color: #475569;
+}
+
+body.light-theme .modal-content {
+    background-color: #ffffff;
+    border-color: #cbd5e1;
+    color: #0f172a;
 }
