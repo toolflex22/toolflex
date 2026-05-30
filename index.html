@@ -173,6 +173,27 @@
                     <a id="download-qr-btn" href="#" download="QRCode.png" style="display: none; margin-top: 15px; background-color: #475569; color: #f8fafc; text-decoration: none; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; cursor: pointer;">تحميل الكود كصورة</a>
                 </div>
             </div>
+            <div class="tool-card">
+                <h3 id="tool9-title">🖼️ أداة ضغط وتقليل حجم الصور</h3>
+                <p id="tool9-desc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">قم بتخفيض حجم صورك بذكاء وبسرعة فائقة دون المساس بجودتها الأصلية.</p>
+                
+                <div style="background-color: #0f172a; padding: 12px; border-radius: 8px; border: 1px solid #334155; margin-bottom: 15px; font-size: 0.9rem;">
+                    <input type="file" id="image-input" accept="image/*" style="width: 100%; color: #94a3b8; font-size: 0.85rem; margin-bottom: 10px; cursor: pointer;">
+                    
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px; align-items: center;">
+                        <span id="label-compress-quality">جودة الضغط (70% ممتع):</span>
+                        <span id="quality-value" style="font-weight: bold; color: #38bdf8;">70%</span>
+                    </div>
+                    <input type="range" id="image-quality" min="10" max="100" value="70" oninput="document.getElementById('quality-value').innerText = this.value + '%'" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
+                </div>
+
+                <button id="compress-btn" onclick="compressImage()" style="width: 100%; background-color: #38bdf8; color: #0f172a; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 15px;">اضغط الصورة الآن</button>
+                
+                <div class="results-box" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50px;">
+                    <div id="compress-output" style="color: #94a3b8; font-size: 0.95rem;">الصورة المضغوطة ستظهر هنا...</div>
+                    <a id="download-img-btn" href="#" download="compressed_image.jpg" style="display: none; margin-top: 15px; background-color: #22c55e; color: #ffffff; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; cursor: pointer;">تحميل الصورة المضغوطة ✓</a>
+                </div>
+            </div>
 
         </div>
     </main>

@@ -169,6 +169,14 @@ function switchLanguage() {
         if(document.getElementById('qr-output').innerText === "الكود المولد سيظهر هنا...") {
             document.getElementById('qr-output').innerText = "Generated QR code will appear here...";
         }
+        document.getElementById('tool9-title').innerText = "🖼️ Image Compressor Tool";
+        document.getElementById('tool9-desc').innerText = "Reduce your images size smartly and ultra-fast without compromising the original quality.";
+        document.getElementById('label-compress-quality').innerText = "Compression Quality:";
+        document.getElementById('compress-btn').innerText = "Compress Image Now";
+        document.getElementById('download-img-btn').innerText = "Download Compressed Image ✓";
+        if(document.getElementById('compress-output').innerText === "الصورة المضغوطة ستظهر هنا...") {
+            document.getElementById('compress-output').innerText = "Compressed image will appear here...";
+        }
     } else {
         currentLanguage = 'ar';
         html.setAttribute('lang', 'ar');
@@ -251,6 +259,14 @@ function switchLanguage() {
         document.getElementById('download-qr-btn').innerText = "تحميل الكود كصورة";
         if(document.getElementById('qr-output').innerText === "Generated QR code will appear here...") {
             document.getElementById('qr-output').innerText = "الكود المولد سيظهر هنا...";
+        }
+        document.getElementById('tool9-title').innerText = "🖼️ أداة ضغط وتقليل حجم الصور";
+        document.getElementById('tool9-desc').innerText = "قم بتخفيض حجم صورك بذكاء وبسرعة فائقة دون المساس بجودتها الأصلية.";
+        document.getElementById('label-compress-quality').innerText = "جودة الضغط (70% ممتع):";
+        document.getElementById('compress-btn').innerText = "اضغط الصورة الآن";
+        document.getElementById('download-img-btn').innerText = "تحميل الصورة المضغوطة ✓";
+        if(document.getElementById('compress-output').innerText === "Compressed image will appear here...") {
+            document.getElementById('compress-output').innerText = "الصورة المضغوطة ستظهر هنا...";
         }
     }
 }
@@ -559,4 +575,59 @@ function generateQRCode() {
         downloadBtn.href = qrImageUrl;
         downloadBtn.style.display = "inline-block";
     }
+}
+// وظيفة أداة ضغط وتقليل حجم الصور الذكية
+function compressImage() {
+    const fileInput = document.getElementById('image-input');
+    const qualityInput = document.getElementById('image-quality');
+    const outputElement = document.getElementById('compress-output');
+    const downloadBtn = document.getElementById('download-img-btn');
+
+    if (!fileInput || !outputElement || !qualityInput) return;
+
+    const file = fileInput.files[0];
+
+    // في حال لم يقم المستخدم باختيار أي صورة
+    if (!file) {
+        outputElement.textContent = currentLanguage === 'ar' ? "الرجاء اختيار صورة أولاً من جهازك!" : "Please select an image first!";
+        if (downloadBtn) downloadBtn.style.display = "none";
+        return;
+    }
+
+    outputElement.textContent = currentLanguage === 'ar' ? "جاري معالجة وضغط الصورة..." : "Processing and compressing image...";
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function (event) {
+        const imgElement = new Image();
+        imgElement.src = event.target.result;
+        
+        imgElement.onload = function () {
+            // إنشاء الـ Canvas البرمجي لإعادة بناء الصورة محلياً
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            // الحفاظ على أبعاد الصورة الأصلية
+            canvas.width = imgElement.width;
+            canvas.height = imgElement.height;
+
+            // رسم الصورة بالكامل داخل الكانفاس
+            ctx.drawImage(imgElement, 0, 0, canvas.width, canvas.height);
+
+            // جلب قيمة الجودة وتحويلها إلى كسر عشري (مثلاً 70 تصبح 0.7)
+            const quality = parseInt(qualityInput.value) / 100;
+
+            // استخراج رابط الصورة المضغوطة بصيغة JPEG الخفيفة وبناءً على الجودة المحددة
+            const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+
+            // عرض رسالة نجاح المعاينة
+            outputElement.textContent = currentLanguage === 'ar' ? "تم ضغط الصورة بنجاح مذهل!" : "Image compressed successfully!";
+            
+            // تفعيل وإظهار زر التحميل الأخضر ومزامنة الرابط
+            if (downloadBtn) {
+                downloadBtn.href = compressedDataUrl;
+                downloadBtn.style.display = "inline-block";
+            }
+        };
+    };
 }
